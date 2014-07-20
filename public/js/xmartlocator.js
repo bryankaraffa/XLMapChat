@@ -6,7 +6,7 @@ var xmartlabslocator = {};
 		webSocket = socket;
 		markers = {};
 
-		var defaultPosition = new google.maps.LatLng(-34.397, 150.644);
+		var defaultPosition = new google.maps.LatLng(-34.397, 119.744);
 		var mapOptions = {
 			zoom: 8,
 			center: defaultPosition,
@@ -51,7 +51,7 @@ var xmartlabslocator = {};
 			map.setCenter(myMarker.getPosition());
 		else {
 			var userMarker = markers[key];
-			if(userMarker)			
+			if(userMarker)
 				map.setCenter(userMarker.getPosition());
 			else
 				alert("The user is no longer connected (or did not share his location)");
@@ -61,10 +61,10 @@ var xmartlabslocator = {};
 	function updateMarker(data) {
 		var marker = markers[data.key];
 		if(marker) {
-			marker.setPosition(new google.maps.LatLng(data.lat,data.lng));			
+			marker.setPosition(new google.maps.LatLng(data.lat,data.lng));
 		} else {
 			markers[data.key] = getMarker(data.lat, data.lng, data.name);
-		}		
+		}
 	}
 
 	function loadMarkers(data) {

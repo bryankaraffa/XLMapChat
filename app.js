@@ -36,9 +36,9 @@ var connectedUsers = {};
 var webSocket = io.listen(httpServer);
 
 if(process.env.NODE_ENV == 'production') {
-  webSocket.configure(function () { 
-    webSocket.set("transports", ["xhr-polling"]); 
-    webSocket.set("polling duration", 10); 
+  webSocket.configure(function () {
+    webSocket.set("transports", ["xhr-polling"]);
+    webSocket.set("polling duration", 10);
   });
 }
 
@@ -89,7 +89,7 @@ webSocket.sockets.on('connection', function(socket) {
       var userInfo = connectedUsers[key];
       if(userInfo) {
         console.log('User ', userInfo.username, ' has disconnected. Key = ', key);
-        delete connectedUsers[key];        
+        delete connectedUsers[key];
         socket.broadcast.emit("user disconnected", key);
       }
     });
